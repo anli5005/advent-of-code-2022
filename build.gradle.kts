@@ -17,7 +17,7 @@ repositories {
 
 fun createSourceSet(name: String) {
     sourceSets.create(name) {
-        kotlin.srcDir(name)
+        kotlin.srcDir(name.padStart(2, '0'))
         dependencies {
             implementation(kotlin("test"))
         }
