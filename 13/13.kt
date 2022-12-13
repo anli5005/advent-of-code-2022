@@ -1,7 +1,10 @@
+// In retrospect, I should've just parsed this as JSON.
+
 import kotlin.math.*
 import kotlin.system.exitProcess
-import kotlin.text.substringAfter
-import kotlin.text.isDigit
+import kotlin.text.*
+import kotlinx.serialization.*
+import kotlinx.serialization.json.*
 
 interface Thing13: Comparable<Thing13> {
     override fun compareTo(other: Thing13): Int {
@@ -52,6 +55,7 @@ data class ListThing(val value: List<Thing13>) : Thing13 {
 }
 
 fun parseThing(line: String): Pair<Thing13, String> {
+    
     // Ints are expressed as themselves
     // Lists are expressed as [1,2,[3,4]]
     // line could either be an int or a list
