@@ -11,6 +11,10 @@ fun IntRange.intersection(other: IntRange): IntRange {
 }
 
 // Implement a range set
+// (I typed that comment, typed the next line, then waited for Copilot to do its thing.)
+// 
+// 
+// It did not do its thing.
 class RangeSet {
     var ranges = mutableSetOf<IntRange>()
 
@@ -24,7 +28,6 @@ class RangeSet {
         ranges.removeAll(intersectingRanges)
         val newRange = (toMerge.minOf { it.first }..toMerge.maxOf { it.last })
         ranges.add(newRange)
-        // println("Found intersecting range: $intersectingRanges w/ $range -> $newRange")
     }
 
     fun intersection(other: RangeSet): RangeSet {
