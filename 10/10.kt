@@ -5,11 +5,23 @@ class CPUTen(program: List<String>) {
     data class State(
         var program: MutableList<String>,
         var registers: MutableMap<String, Int> = mutableMapOf("A" to 1),
+        var memory: MutableList<Int> = mutableListOf(),
         var pc: Int = 0,
         var zeroIndexedCycle: Int = -1
     ) {
         val oneIndexedCycle get() = zeroIndexedCycle + 1
-        fun copy() = State(program.toMutableList(), registers.toMutableMap(), pc, zeroIndexedCycle)
+        fun copy() = State(program.toMutableList(), registers.toMutableMap(), memory.toMutableList(), pc, zeroIndexedCycle)
+
+        fun read(address: Int) {
+            memory.getOrElse(address) { 0 }
+        }
+
+        fun write(address: Int, value: Int) {
+            if (address >= memory.size) {
+                memory.addAll(List(address - memory.size + 1) { 0 })
+            }
+            memory[address] = value
+        }
     }
 
     fun step(): Boolean {
