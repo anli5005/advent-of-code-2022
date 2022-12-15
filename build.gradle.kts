@@ -16,15 +16,12 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
-}
-
 fun createSourceSet(name: String) {
     sourceSets.create(name) {
         kotlin.srcDir(name.padStart(2, '0'))
         dependencies {
             implementation(kotlin("test"))
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
         }
     }
 }
